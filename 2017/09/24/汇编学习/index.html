@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="近期刚刚开始学习汇编，通过博客记录一些东西，巩固知识点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编学习">
+<meta property="og:url" content="https://xiaohei21.tk/2017/09/24/汇编学习/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="近期刚刚开始学习汇编，通过博客记录一些东西，巩固知识点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2017/09/24/59c773e7f27a3.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/24/59c773e83a98f.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/24/59c773e863a62.jpg">
+<meta property="og:image" content="https://i.loli.net/2017/09/24/59c77af8ecd4a.jpg">
+<meta property="og:updated_time" content="2018-05-18T10:01:33.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汇编学习">
+<meta name="twitter:description" content="近期刚刚开始学习汇编，通过博客记录一些东西，巩固知识点。">
+<meta name="twitter:image" content="https://i.loli.net/2017/09/24/59c773e7f27a3.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://xiaohei21.tk/2017/09/24/汇编学习/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>汇编学习 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiaohei21.tk/2017/09/24/汇编学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Able">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">汇编学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-24 17:34:30" itemprop="dateCreated datePublished" datetime="2017-09-24T17:34:30+08:00">2017-09-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-18 18:01:33" itemprop="dateModified" datetime="2018-05-18T18:01:33+08:00">2018-05-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近期刚刚开始学习汇编，通过博客记录一些东西，巩固知识点。<br><a id="more"></a></p>
+<ul>
+<li>CPU字长<br>CPU在单位时间内能一次处理的二进制位数.该指标反映出CPU内部运算处理的速度.</li>
+<li>位宽<br>CPU<strong>外部总线与外部设备之间</strong>一次能够传送的数据位.</li>
+<li>x位CPU<br>通常用<strong>字长</strong>和<strong>位宽</strong>来称呼CPU.<h5 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h5></li>
+</ul>
+<ul>
+<li>intel阵营<ul>
+<li>8086 16位 CPU (字长16位,位宽16位)</li>
+<li>386 准32位 CPU (字长32位,位宽16位)</li>
+<li>Pentium 超32位 CPU (字长32位,位宽64位)</li>
+</ul>
+</li>
+<li>同期竞争品<ul>
+<li><a href="https://en.wikipedia.org/wiki/Zilog_Z8000" target="_blank" rel="noopener">Zilog Z8000</a> (16位CPU,对标8086)</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%91%A9%E6%89%98%E7%BD%97%E6%8B%896800" target="_blank" rel="noopener">Motorola 6800</a> (8位CPU,对标8080)</li>
+<li><a href="https://en.wikipedia.org/wiki/Am386" target="_blank" rel="noopener">Am386</a> (80386的打鸡血克隆版,农企强无敌!)</li>
+</ul>
+</li>
+</ul>
+<p>#####ISA(Instruction Set Architecture)</p>
+<ul>
+<li>即指令集架构</li>
+<li>一个处理器<strong>支持的指令</strong>和<strong>指令的字节级编码</strong>称为它的ISA.</li>
+<li>不同的处理器”家族”系列,有不同的ISA.</li>
+<li>同一系列里也有不同类型的处理器.</li>
+</ul>
+<h6 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h6><p>虽然每个厂商制造的处理器性能和复杂性不断提高，但是不同的类型在ISA级别上都保持着兼容.</p>
+<h4 id="x86"><a href="#x86" class="headerlink" title="x86"></a>x86</h4><p> Intel现在称其指令集为IA32指令集,也就是“Intel 32位体系结构”（Intel Architecture 32-bit）.</p>
+<p>IA32指令集，又被俗称为x86。这个处理器系列也俗称x86系列CPU.</p>
+<p>IA32架构属于复杂指令集,随着80386的上市被公诸于世,用于取代 x86_16位架构(曾被用于8086,80186,80286等).</p>
+<h4 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h4><p>8086CPU中,寄存器AX,BX,CX, DX通常用于存放一般性数据,称为通用寄存器.每个寄存器均为16位.</p>
+<p>32位CPU中,通用寄存器为EAX,EBX,ECX,EDX.</p>
+<p>64位 CPU中,通用寄存器为RAX,RBX,RCX,RDX.</p>
+<ul>
+<li><p>以AX为例，可将AH和AL作为8位寄存器单独使用</p>
+<p><img src="https://i.loli.net/2017/09/24/59c773e7f27a3.png" alt="图片1.png"></p>
+<p>AH和AL存放的无符号数据范围: 0  ~  2^8-1</p>
+</li>
+<li><p>一个字由两个字节组成,可以存在一个16位寄存器中.</p>
+<ul>
+<li>字的高8位 → 存放于通用寄存器的高8位寄存器.</li>
+<li>字的低8位 → 存放于通用寄存器的低8位寄存器.</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2017/09/24/59c773e83a98f.png" alt="图片2.png"></p>
+<p>####不同的定址模式  </p>
+<p><img src="https://i.loli.net/2017/09/24/59c773e863a62.jpg" alt="snipaste_20170924_165856.jpg"></p>
+<p>对于8086来说,段地址  × 16  + 偏移地址  =  物理地址.</p>
+<h4 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h4><ul>
+<li><p>指令使用注意事项</p>
+<ul>
+<li>在mov和add指令中,两个操作对象的位数应一致.</li>
+<li>运算时超出寄存器表示的位数的情形:<img src="https://i.loli.net/2017/09/24/59c77af8ecd4a.jpg" alt="snipaste_20170924_172911.jpg"></li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/29/终端代理神器proxychains简明教程/" rel="next" title="终端代理神器proxychains简明教程">
+                <i class="fa fa-chevron-left"></i> 终端代理神器proxychains简明教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/18/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tony Able</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#举例"><span class="nav-number">1.</span> <span class="nav-text">举例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ps"><span class="nav-number">1.1.</span> <span class="nav-text">ps</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#x86"><span class="nav-number"></span> <span class="nav-text">x86</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通用寄存器"><span class="nav-number"></span> <span class="nav-text">通用寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PS"><span class="nav-number"></span> <span class="nav-text">PS</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Able</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
